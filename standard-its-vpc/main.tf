@@ -14,7 +14,7 @@ module "vpc_public_subnets" {
   name       = join("-", [var.name,"vpc"])
   new_bits           = "2"
   source             = "../vpc_subnets"
-  subnet_cidr = cidrsubnet(var.cidr_block, 3, 0)
+  subnet_cidr = cidrsubnet(var.cidr_block, var.subnet_tier_bits, var.public_subnet_index)
   tags                 = merge(var.tags, map("Name", var.name))
   vpc_id      = module.vpc.vpc_id
 }
@@ -26,7 +26,7 @@ module "vpc_tgw_subnets" {
   name               = join("-", [var.name, "vpc-tgw-subnet"])
   new_bits           = "2"
   source             = "../vpc_subnets"
-  subnet_cidr = cidrsubnet(var.cidr_block, 3, 1)
+  subnet_cidr = cidrsubnet(var.cidr_block, var.subnet_tier_bits, var.tgw_subnet_index)
   tags                 = merge(var.tags, map("Name", var.name))
   vpc_id      = module.vpc.vpc_id
 }
@@ -38,7 +38,7 @@ module "vpc_private_subnets" {
   name               = join("-", [var.name, "vpc-private-subnet"])
   new_bits           = "2"
   source             = "../vpc_subnets"
-  subnet_cidr = cidrsubnet(var.cidr_block, 3, 2)
+  subnet_cidr = cidrsubnet(var.cidr_block, var.subnet_tier_bits, var.private_subnet_index)
   tags                 = merge(var.tags, map("Name", var.name))
   vpc_id      = module.vpc.vpc_id
 }
@@ -51,7 +51,7 @@ module "vpc_data_subnets" {
   name               = join("-", [var.name, "vpc-data-subnet"])
   new_bits           = "2"
   source             = "../vpc_subnets"
-  subnet_cidr        = cidrsubnet(var.cidr_block, 3, 4)
+  subnet_cidr = cidrsubnet(var.cidr_block, var.subnet_tier_bits, var.data_subnet_index)
   tags                 = merge(var.tags, map("Name", var.name))
   vpc_id = module.vpc.vpc_id
 }

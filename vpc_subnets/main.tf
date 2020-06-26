@@ -1,8 +1,10 @@
 locals {
   enabled = var.enabled == "true"
 }
+
 data "aws_availability_zones" "available_zones" {
 }
+
 # Subnet 
 resource "aws_subnet" "this" {
   availability_zone = var.availability_zones[count.index]

@@ -1,5 +1,5 @@
 variable "destination_cidr_block" {
-  default = "10.0.0.0/8"
+  default     = "10.0.0.0/8"
   type        = string
   description = "route consolidation cidr"
 }

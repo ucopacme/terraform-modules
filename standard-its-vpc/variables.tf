@@ -33,30 +33,30 @@ variable "name" {
 
 variable "public_subnet_index" {
   description = "index of public subnet"
-  default = 0
+  default     = 0
   type        = number
 }
 
 variable "tgw_subnet_index" {
   description = "index of tgw subnet"
-  default = 1
+  default     = 1
   type        = number
 }
 
 variable "private_subnet_index" {
   description = "index of private subnet"
-  default = 2
+  default     = 2
   type        = number
 }
 
 variable "data_subnet_index" {
   description = "index of data subnet"
-  default = 4
+  default     = 4
   type        = number
 }
 
 variable "subnet_tier_bits" {
-  default = 3
+  default     = 3
   type        = number
   description = "number of bits to allocate to subnet tiers, 3 means 8 different tier blocks"
 }

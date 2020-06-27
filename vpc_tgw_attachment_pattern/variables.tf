@@ -47,6 +47,11 @@ variable "tags" {
   type        = map(string)
 }
 
+variable "transit_gateway_route_table_id" {
+  type        = string
+  description = "transit gateway route table id"
+}
+
 variable "tgw_id" {
   description = "transit gateway id"
   type        = string

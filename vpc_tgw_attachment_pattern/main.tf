@@ -1,12 +1,3 @@
-# vpc tgw table
-module "vpc_tgw_route_table" {
-  enabled            = var.enabled
-  name               = var.name_tgw_route_table
-  source             = "../tgw_route_table"
-  tags               = merge(var.tags, map("Name", var.name_tgw_route_table))
-  transit_gateway_id = var.tgw_id
-}
-
 # vpc subnets tgw attachment
 module "vpc_subnets_tgw_attachment" {
   enabled                                         = var.enabled
@@ -26,13 +17,13 @@ module "vpc_subnets_tgw_attachment_tgw_route_table_association" {
   source                         = "../tgw_route_table_association"
   tags                           = merge(var.tags, map("Name", var.name_tgw_route_table_association))
   transit_gateway_attachment_id  = module.vpc_subnets_tgw_attachment.tgw_attachment_id
-  transit_gateway_route_table_id = module.vpc_tgw_route_table.transit_gateway_route_table_id
+  transit_gateway_route_table_id = var.transit_gateway_route_table_id
 }
 
 # vpc route consolidation
 module "vpc_route_consolidation" {
   destination_cidr_block = var.destination_cidr_block
-  enabled                = "true"
+  enabled                = var.enabled
   name                   = var.name_route_consolidation
   route_table_id         = var.route_table_id
   source                 = "../route"

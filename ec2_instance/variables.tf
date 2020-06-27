@@ -9,6 +9,11 @@ variable "associate_public_ip_address" {
   type        = bool
 }
 
+variable "desc_sg" {
+  description = "security group description"
+  type        = string
+}
+
 variable "enabled" {
   type        = string
   description = "Set to `false` to prevent the module from creating any resources"
@@ -28,8 +33,13 @@ variable "instance_type" {
   type        = string
 }
 
-variable "name" {
-  description = "Resource name"
+variable "name_ec2" {
+  description = "ec2 name"
+  type        = string
+}
+
+variable "name_sg" {
+  description = "sg name"
   type        = string
 }
 
@@ -44,7 +54,7 @@ variable "tags" {
   type        = map(string)
 }
 
-variable "vpc_security_group_ids" {
-  description = "list of security group ids"
-  type        = list(string)
+variable "vpc_id" {
+  description = "VPC Id"
+  type        = string
 }

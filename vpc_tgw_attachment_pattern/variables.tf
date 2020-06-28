@@ -20,11 +20,6 @@ variable "name_tgw_attachment" {
   description = "name for transit gateway attachment"
 }
 
-variable "name_tgw_route_table" {
-  type        = string
-  description = "name for transit gateway route table"
-}
-
 variable "name_tgw_route_table_association" {
   type        = string
   description = "name for transit gateway route table association"

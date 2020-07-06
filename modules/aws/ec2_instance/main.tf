@@ -18,7 +18,7 @@ module "ec2_sg" {
   enabled     = var.enabled
   description = var.desc_sg
   name        = var.name_sg
-  source      = "../ec2_security_group"
+  source = "git::ssh://git@github.com/ucopacme/terraform-module.git//modules/aws/ec2_security_group?ref=v0.0.01"
   tags        = merge(var.tags, map("Name", var.name_sg))
   vpc_id      = var.vpc_id
 }

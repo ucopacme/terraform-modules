@@ -3,7 +3,8 @@ module "vpc" {
   cidr_block = var.cidr_block
   enabled    = var.enabled
   name       = join("-", [var.name, "vpc"])
-  source     = "../vpc"
+  # source     = "../vpc"
+  source = "git::ssh://git@github.com/ucopacme/aws-network.git//terraform/modules/vpc?ref=v0.0.1"
   tags       = merge(var.tags, map("Name", var.name))
 }
 
@@ -13,7 +14,8 @@ module "vpc_public_subnets" {
   enabled            = var.enabled
   name               = join("-", [var.name, "vpc"])
   new_bits           = "2"
-  source             = "../vpc_subnets"
+  #source             = "../vpc_subnets"
+  source = "git::ssh://git@github.com/ucopacme/aws-network.git//terraform/modules/vpc_subnets?ref=v0.0.1"
   subnet_cidr        = cidrsubnet(var.cidr_block, var.subnet_tier_bits, var.public_subnet_index)
   tags               = merge(var.tags, map("Name", var.name))
   vpc_id             = module.vpc.vpc_id
@@ -25,7 +27,8 @@ module "vpc_tgw_subnets" {
   enabled            = var.enabled
   name               = join("-", [var.name, "vpc-tgw-subnet"])
   new_bits           = "2"
-  source             = "../vpc_subnets"
+  #source             = "../vpc_subnets"
+  source = "git::ssh://git@github.com/ucopacme/aws-network.git//terraform/modules/vpc_subnets?ref=v0.0.1"
   subnet_cidr        = cidrsubnet(var.cidr_block, var.subnet_tier_bits, var.tgw_subnet_index)
   tags               = merge(var.tags, map("Name", var.name))
   vpc_id             = module.vpc.vpc_id
@@ -37,7 +40,8 @@ module "vpc_private_subnets" {
   enabled            = var.enabled
   name               = join("-", [var.name, "vpc-private-subnet"])
   new_bits           = "2"
-  source             = "../vpc_subnets"
+  #source             = "../vpc_subnets"
+  source = "git::ssh://git@github.com/ucopacme/aws-network.git//terraform/modules/vpc_subnets?ref=v0.0.1"
   subnet_cidr        = cidrsubnet(var.cidr_block, var.subnet_tier_bits, var.private_subnet_index)
   tags               = merge(var.tags, map("Name", var.name))
   vpc_id             = module.vpc.vpc_id
@@ -50,7 +54,8 @@ module "vpc_data_subnets" {
   enabled            = var.enabled
   name               = join("-", [var.name, "vpc-data-subnet"])
   new_bits           = "2"
-  source             = "../vpc_subnets"
+  #source             = "../vpc_subnets"
+  source = "git::ssh://git@github.com/ucopacme/aws-network.git//terraform/modules/vpc_subnets?ref=v0.0.1"
   subnet_cidr        = cidrsubnet(var.cidr_block, var.subnet_tier_bits, var.data_subnet_index)
   tags               = merge(var.tags, map("Name", var.name))
   vpc_id             = module.vpc.vpc_id
@@ -60,7 +65,8 @@ module "vpc_data_subnets" {
 module "vpc_route_table" {
   enabled = var.enabled
   name    = join("-", [var.name, "vpc-route-table"])
-  source  = "../route_table"
+  #source  = "../route_table"
+  source = "git::ssh://git@github.com/ucopacme/aws-network.git//terraform/modules/route_table?ref=v0.0.1"
   tags    = merge(var.tags, map("Name", var.name))
   vpc_id  = module.vpc.vpc_id
 }
@@ -69,7 +75,8 @@ module "vpc_route_table" {
 module "vpc_route_table_main_route_table_association" {
   enabled        = var.enabled
   name           = join("-", [var.name, "vpc-route-table-main-route-table-association"])
-  source         = "../main_route_table_association"
+  #source         = "../main_route_table_association"
+  source = "git::ssh://git@github.com/ucopacme/aws-network.git//terraform/modules/main_route_table_association?ref=v0.0.1"
   tags           = merge(var.tags, map("Name", var.name))
   route_table_id = module.vpc_route_table.id
   vpc_id         = module.vpc.vpc_id
@@ -79,7 +86,8 @@ module "vpc_route_table_main_route_table_association" {
 module "vpc_igw" {
   enabled = var.enabled
   name    = join("-", [var.name, "vpc-igw"])
-  source  = "../internet_gateway"
+  #source  = "../internet_gateway"
+  source = "git::ssh://git@github.com/ucopacme/aws-network.git//terraform/modules/internet_gateway?ref=v0.0.1"
   tags    = merge(var.tags, map("Name", var.name))
   vpc_id  = module.vpc.vpc_id
 }
@@ -88,7 +96,8 @@ module "vpc_igw" {
 module "vpc_route_for_igw" {
   enabled                = var.enabled
   name                   = join("-", [var.name, "vpc-route-for-igw"])
-  source                 = "../route"
+  #source                 = "../route"
+  source = "git::ssh://git@github.com/ucopacme/aws-network.git//terraform/modules/route?ref=v0.0.1"
   tags                   = merge(var.tags, map("Name", var.name))
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = module.vpc_igw.id

@@ -11,7 +11,7 @@ module "vpc" {
 module "vpc_public_subnets" {
   availability_zones = var.azs
   enabled            = var.enabled
-  name               = join("-", [var.name, "vpc"])
+  name               = join("-", [var.name, "vpc-public-subnet"])
   new_bits           = "2"
   source = "git::ssh://git@github.com/ucopacme/terraform-module.git//modules/aws/vpc_subnets?ref=v0.0.1"
   subnet_cidr        = cidrsubnet(var.cidr_block, var.subnet_tier_bits, var.public_subnet_index)

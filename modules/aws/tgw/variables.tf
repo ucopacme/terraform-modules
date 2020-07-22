@@ -1,8 +1,3 @@
-variable "enabled" {
-  type        = string
-  description = "Set to `false` to prevent the module from creating any resources"
-  default     = "true"
-}
 variable "amazon_side_asn" {
   default     = "64512"
   description = " (Optional) Private Autonomous System Number (ASN) for the Amazon side of a BGP session. The range is 64512 to 65534 for 16-bit ASNs"
@@ -34,12 +29,29 @@ variable "dns_support" {
   description = "(Optional) Whether DNS support is enabled. Valid values: disable, enable. Default value: enable."
 }
 
+variable "enabled" {
+  type        = string
+  description = "Set to `false` to prevent the module from creating any resources"
+  default     = "true"
+}
+
 variable "name" {
   default     = "junk"
   description = "Resource name"
   type        = string
 }
 
+variable "ram_enabled" {
+  type        = string
+  description = "Set to `true to enable ram"
+  default     = "false"
+}
+
+variable "ram_principals" {
+  type        = list(string)
+  description = "list of ram principals to share tgw"
+  default     = []
+}
 
 variable "tags" {
   default     = {}

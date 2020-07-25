@@ -4,7 +4,7 @@
 
 Here's a simple vpc model we could use: 
 
-#Large /19
+### Large /19
 ```
 ipcalc 10.100.0.0/19
 
@@ -19,6 +19,8 @@ Broadcast: 10.100.31.255        00001010.01100100.000 11111.11111111
 Hosts/Net: 8190                  Class A, Private Internet
 ```
 
+### Medium /21
+
 ```
 ipcalc 10.100.0.0/21
 
@@ -32,6 +34,8 @@ HostMax:   10.100.7.254         00001010.01100100.00000 111.11111110
 Broadcast: 10.100.7.255         00001010.01100100.00000 111.11111111
 Hosts/Net: 2046                  Class A, Private Internet
 ```
+
+### Small /23
 
 ```
 ipcalc 10.100.0.0/23
@@ -64,26 +68,41 @@ network environments.
 ### Large /19 VPCS
 
 VPC 10.100.0.0/19 -  10.100.0.0-10.100.31.255
+
 PUBLIC  10.100.0.0/22, AZs /24 CIDR, 251 ips per AZ
+
 TGW  10.100.4.0/22, AZs /24 CIDR, 251 ips per AZ
+
 PRIVATE  10.100.8.0/21, AZs /23 CIDR, 507 ips per AZ
+
 DATA  10.100.16.0/21, AZs /23 CIDR, 507 ips per AZ
+
 RESERVED  10.100.24.0/21
 
 ### Medium /21 VPCS
 
 VPC 10.100.0.0/21 -  10.100.0.0-10.100.7.255
+
 PUBLIC  10.100.0.0/24, AZs /26 CIDR, 59 ips per AZ
+
 TGW  10.100.1.0/24, AZs /26 CIDR, 59 ips per AZ
+
 PRIVATE  10.100.2.0/23, AZs /25 CIDR, 123 ips per AZ
+
 DATA  10.100.4.0/23, AZs /25 CIDR, 123 ips per AZ
+
 RESERVED  10.100.6.0/23
 
 ### Small /23 VPCS
 
 VPC 10.100.0.0/23 -  10.100.0.0-10.100.1.255
+
 PUBLIC  10.100.0.0/26, AZs /28 CIDR, 11 ips per AZ
+
 TGW  10.100.0.64/26, AZs /28 CIDR, 11 ips per AZ
+
 PRIVATE  10.100.0.128/25, AZs /27 CIDR, 27 ips per AZ
+
 DATA  10.100.1.0/25, AZs /27 CIDR, 27 ips per AZ
+
 RESERVED  10.100.1.128/25

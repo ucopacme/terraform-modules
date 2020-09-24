@@ -1,7 +1,7 @@
 locals {
   enabled = var.enabled == "true"
 }
-# VPC endpoint 
+# VPC endpoint
 resource "aws_vpc_endpoint" "this" {
   count = local.enabled ? length(var.availability_zones) : 0
   tags  = merge(var.tags, map("Name", var.name))

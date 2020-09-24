@@ -1,7 +1,7 @@
 /**
  * # terraform aws transit gateway route table propagation module
  *
- * this terraform module creates [AWS transit gateway route table propagation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ec2_transit_gateway_route_table_propagation)
+ * terraform module to create [AWS transit gateway route table propagation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ec2_transit_gateway_route_table_propagation) from list of transit gateway attachment ids
  *
  * proudly built in Oakland, California by [UCOP ACME Org](https://github.com/ucopacme), patent pending
  *

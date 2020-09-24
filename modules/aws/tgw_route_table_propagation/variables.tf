@@ -1,7 +1,7 @@
 variable "enabled" {
-  type        = string
+  type        = bool
   description = "Set to `false` to prevent the module from creating any resources"
-  default     = "true"
+  default     = true
 }
 variable "name" {
   description = "Resource name"
@@ -14,12 +14,12 @@ variable "tags" {
   type        = map(string)
 }
 
-variable "transit_gateway_attachment_id" {
-  type        = string
-  description = "Transit Gateway Attachment Id"
+variable "transit_gateway_attachment_ids" {
+  type        = list(string)
+  description = "[Transit Gateway Attachment Id](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ec2_transit_gateway_route_table_propagation) list"
 }
 
 variable "transit_gateway_route_table_id" {
   type        = string
-  description = "Transit Gateway Route Table Id"
+  description = "[Transit Gateway Route Table Id](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ec2_transit_gateway_route_table_propagation#transit_gateway_route_table_id)"
 }

@@ -26,6 +26,4 @@ No requirements.
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| tgw\_rt\_propagation | n/a |
+No output.

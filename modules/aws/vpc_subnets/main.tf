@@ -5,7 +5,7 @@ locals {
 data "aws_availability_zones" "available_zones" {
 }
 
-# Subnet 
+# Subnet
 resource "aws_subnet" "this" {
   availability_zone = var.availability_zones[count.index]
   # create subnets in desired availability  zones.

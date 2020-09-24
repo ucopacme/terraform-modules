@@ -74,7 +74,7 @@ module "vpc_route_table_main_route_table_association" {
   vpc_id         = module.vpc.vpc_id
 }
 
-# vpc internet gateway 
+# vpc internet gateway
 module "vpc_igw" {
   enabled = var.enabled
   name    = join("-", [var.name, "vpc-igw"])

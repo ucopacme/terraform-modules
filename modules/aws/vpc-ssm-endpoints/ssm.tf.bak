@@ -1,4 +1,4 @@
-# ssm vpc endpoint 
+# ssm vpc endpoint
 module "vpc_endpoint_ssm_shared_private" {
   enabled             = "false"
   name                = join("-", [var.application, var.environment, "ec2-instance-shared-private-ssm-endpoint"])
@@ -12,7 +12,7 @@ module "vpc_endpoint_ssm_shared_private" {
   vpc_id              = module.shared_vpc.vpc_id
 }
 
-# ssm messages vpc endpoint 
+# ssm messages vpc endpoint
 module "vpc_endpoint_ssm_messages_shared_private" {
   enabled             = var.ec2_instance_shared_private_enabled
   name                = join("-", [var.application, var.environment, "ssm-instance-shared-private-ssm-messages-endpoint"])
@@ -26,7 +26,7 @@ module "vpc_endpoint_ssm_messages_shared_private" {
   vpc_id              = module.shared_vpc.vpc_id
 }
 
-# ec2 messages vpc endpoint 
+# ec2 messages vpc endpoint
 module "vpc_endpoint_ec2_messages_shared_private" {
   enabled             = var.ec2_instance_shared_private_enabled
   name                = join("-", [var.application, var.environment, "ec2-instance-shared-private-ec2-messages-endpoint"])

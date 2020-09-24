@@ -1,140 +1,228 @@
 {
-    "widgets": [
-        {
-            "type": "metric",
-            "x": 0,
-            "y": 0,
-            "width": 12,
-            "height": 6,
-            "properties": {
-                "view": "timeSeries",
-                "stacked": false,
-                "metrics": [
-                    [ "AWS/TransitGateway", "BytesIn", "TransitGateway", "tgw-0f3fe9339d7a49aa4" ],
-                    [ ".", "BytesOut", ".", "." ]
-                ],
-                "region": "us-west-2",
-                "title": "transit gateway bytes in/out",
-                "period": 300
-            }
+  "widgets": [
+    {
+      "height": 6,
+      "properties": {
+        "metrics": [
+          [
+            "AWS/TransitGateway",
+            "BytesIn",
+            "TransitGateway",
+            "tgw-0f3fe9339d7a49aa4"
+          ],
+          [
+            ".",
+            "BytesOut",
+            ".",
+            "."
+          ]
+        ],
+        "period": 300,
+        "region": "us-west-2",
+        "stacked": false,
+        "title": "transit gateway bytes in/out",
+        "view": "timeSeries"
+      },
+      "type": "metric",
+      "width": 12,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "height": 6,
+      "properties": {
+        "metrics": [
+          [
+            "AWS/TransitGateway",
+            "PacketsIn",
+            "TransitGateway",
+            "tgw-0f3fe9339d7a49aa4"
+          ],
+          [
+            ".",
+            "PacketsOut",
+            ".",
+            "."
+          ]
+        ],
+        "region": "us-west-2",
+        "stacked": false,
+        "title": "transit gateway packets in/out",
+        "view": "timeSeries"
+      },
+      "type": "metric",
+      "width": 12,
+      "x": 0,
+      "y": 6
+    },
+    {
+      "height": 6,
+      "properties": {
+        "metrics": [
+          [
+            "AWS/TransitGateway",
+            "BytesDropCountBlackhole",
+            "TransitGateway",
+            "tgw-0f3fe9339d7a49aa4"
+          ],
+          [
+            ".",
+            "BytesDropCountNoRoute",
+            ".",
+            "."
+          ]
+        ],
+        "region": "us-west-2",
+        "stacked": false,
+        "title": "transit gateway bytes dropped blackhole/noroute",
+        "view": "timeSeries"
+      },
+      "type": "metric",
+      "width": 12,
+      "x": 12,
+      "y": 0
+    },
+    {
+      "height": 6,
+      "properties": {
+        "metrics": [
+          [
+            "AWS/TransitGateway",
+            "PacketDropCountBlackhole",
+            "TransitGateway",
+            "tgw-0f3fe9339d7a49aa4"
+          ],
+          [
+            ".",
+            "PacketDropCountNoRoute",
+            ".",
+            "."
+          ]
+        ],
+        "period": 300,
+        "region": "us-west-2",
+        "stacked": false,
+        "title": "transit gateway packets dropped blackhole/noroute",
+        "view": "timeSeries"
+      },
+      "type": "metric",
+      "width": 12,
+      "x": 12,
+      "y": 6
+    },
+    {
+      "height": 6,
+      "properties": {
+        "copilot": true,
+        "legend": {
+          "position": "bottom"
         },
-        {
-            "type": "metric",
-            "x": 0,
-            "y": 6,
-            "width": 12,
-            "height": 6,
-            "properties": {
-                "view": "timeSeries",
-                "stacked": false,
-                "metrics": [
-                    [ "AWS/TransitGateway", "PacketsIn", "TransitGateway", "tgw-0f3fe9339d7a49aa4" ],
-                    [ ".", "PacketsOut", ".", "." ]
-                ],
-                "region": "us-west-2",
-                "title": "transit gateway packets in/out"
+        "metrics": [
+          [
+            "AWS/VPN",
+            "TunnelDataIn",
+            "VpnId",
+            "vpn-0b6136eed3217a16b",
+            {
+              "id": "m0r0",
+              "stat": "Sum"
             }
+          ],
+          [
+            "...",
+            "vpn-015d357226095aebf",
+            {
+              "id": "m0r1",
+              "stat": "Sum"
+            }
+          ]
+        ],
+        "period": 300,
+        "region": "us-west-2",
+        "stacked": false,
+        "title": "VPN Tunnel Data In Sum",
+        "view": "timeSeries"
+      },
+      "type": "metric",
+      "width": 12,
+      "x": 0,
+      "y": 12
+    },
+    {
+      "height": 6,
+      "properties": {
+        "copilot": true,
+        "legend": {
+          "position": "bottom"
         },
-        {
-            "type": "metric",
-            "x": 12,
-            "y": 0,
-            "width": 12,
-            "height": 6,
-            "properties": {
-                "view": "timeSeries",
-                "stacked": false,
-                "metrics": [
-                    [ "AWS/TransitGateway", "BytesDropCountBlackhole", "TransitGateway", "tgw-0f3fe9339d7a49aa4" ],
-                    [ ".", "BytesDropCountNoRoute", ".", "." ]
-                ],
-                "region": "us-west-2",
-                "title": "transit gateway bytes dropped blackhole/noroute"
+        "metrics": [
+          [
+            "AWS/VPN",
+            "TunnelState",
+            "VpnId",
+            "vpn-0b6136eed3217a16b",
+            {
+              "id": "m0r0",
+              "stat": "Average"
             }
+          ],
+          [
+            "...",
+            "vpn-015d357226095aebf",
+            {
+              "id": "m0r1",
+              "stat": "Average"
+            }
+          ]
+        ],
+        "period": 300,
+        "region": "us-west-2",
+        "stacked": false,
+        "title": "VPN Tunnel State Average",
+        "view": "timeSeries"
+      },
+      "type": "metric",
+      "width": 12,
+      "x": 0,
+      "y": 18
+    },
+    {
+      "height": 6,
+      "properties": {
+        "copilot": true,
+        "legend": {
+          "position": "bottom"
         },
-        {
-            "type": "metric",
-            "x": 12,
-            "y": 6,
-            "width": 12,
-            "height": 6,
-            "properties": {
-                "view": "timeSeries",
-                "stacked": false,
-                "metrics": [
-                    [ "AWS/TransitGateway", "PacketDropCountBlackhole", "TransitGateway", "tgw-0f3fe9339d7a49aa4" ],
-                    [ ".", "PacketDropCountNoRoute", ".", "." ]
-                ],
-                "region": "us-west-2",
-                "period": 300,
-                "title": "transit gateway packets dropped blackhole/noroute"
+        "metrics": [
+          [
+            "AWS/VPN",
+            "TunnelDataOut",
+            "VpnId",
+            "vpn-0b6136eed3217a16b",
+            {
+              "id": "m0r0",
+              "stat": "Sum"
             }
-        },
-        {
-            "type": "metric",
-            "x": 0,
-            "y": 12,
-            "width": 12,
-            "height": 6,
-            "properties": {
-                "region": "us-west-2",
-                "metrics": [
-                    [ "AWS/VPN", "TunnelDataIn", "VpnId", "vpn-0b6136eed3217a16b", { "stat": "Sum", "id": "m0r0" } ],
-                    [ "...", "vpn-015d357226095aebf", { "stat": "Sum", "id": "m0r1" } ]
-                ],
-                "title": "VPN Tunnel Data In Sum",
-                "copilot": true,
-                "legend": {
-                    "position": "bottom"
-                },
-                "period": 300,
-                "view": "timeSeries",
-                "stacked": false
+          ],
+          [
+            "...",
+            "vpn-015d357226095aebf",
+            {
+              "id": "m0r1",
+              "stat": "Sum"
             }
-        },
-        {
-            "type": "metric",
-            "x": 0,
-            "y": 18,
-            "width": 12,
-            "height": 6,
-            "properties": {
-                "region": "us-west-2",
-                "metrics": [
-                    [ "AWS/VPN", "TunnelState", "VpnId", "vpn-0b6136eed3217a16b", { "stat": "Average", "id": "m0r0" } ],
-                    [ "...", "vpn-015d357226095aebf", { "stat": "Average", "id": "m0r1" } ]
-                ],
-                "title": "VPN Tunnel State Average",
-                "copilot": true,
-                "legend": {
-                    "position": "bottom"
-                },
-                "period": 300,
-                "view": "timeSeries",
-                "stacked": false
-            }
-        },
-        {
-            "type": "metric",
-            "x": 12,
-            "y": 12,
-            "width": 12,
-            "height": 6,
-            "properties": {
-                "region": "us-west-2",
-                "metrics": [
-                    [ "AWS/VPN", "TunnelDataOut", "VpnId", "vpn-0b6136eed3217a16b", { "stat": "Sum", "id": "m0r0" } ],
-                    [ "...", "vpn-015d357226095aebf", { "stat": "Sum", "id": "m0r1" } ]
-                ],
-                "title": "VPN Tunnel Data Out Sum",
-                "copilot": true,
-                "legend": {
-                    "position": "bottom"
-                },
-                "period": 300,
-                "view": "timeSeries",
-                "stacked": false
-            }
-        }
-    ]
+          ]
+        ],
+        "period": 300,
+        "region": "us-west-2",
+        "stacked": false,
+        "title": "VPN Tunnel Data Out Sum",
+        "view": "timeSeries"
+      },
+      "type": "metric",
+      "width": 12,
+      "x": 12,
+      "y": 12
+    }
+  ]
 }

@@ -68,6 +68,7 @@ module "vpc_route_table" {
 
 module "vpc_nat_gateway"{
   enabled       = var.enabled
+  name          = join("-", [var.name, "nat-gateway"])       
   source         = "../nat_gateway"
   allocation_id = var.allocation_id
   subnet_id     = module.vpc_public_subnets.id

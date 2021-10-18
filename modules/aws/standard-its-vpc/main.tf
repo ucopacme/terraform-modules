@@ -64,6 +64,16 @@ module "vpc_route_table" {
   vpc_id  = module.vpc.vpc_id
 }
 
+# AWS nat gatewawy
+
+module "vpc_nat_gateway"{
+  enabled       = var.enabled
+  allocation_id = var.allocation_id
+  subnet_id     = module.vpc_public_subnets.id
+  tags          = merge(var.tags, map("Name", var.name))
+
+}
+
 # vpc route table main route table association
 module "vpc_route_table_main_route_table_association" {
   enabled        = var.enabled
@@ -94,6 +104,7 @@ module "vpc_igw" {
   tags    = merge(var.tags, map("Name", var.name))
   vpc_id  = module.vpc.vpc_id
 }
+
 
 # vpc route for internet gateway
 module "vpc_route_for_igw" {

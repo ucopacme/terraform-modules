@@ -11,7 +11,7 @@ resource "aws_route_table" "this" {
 #kk changes
 resource "aws_route_table" "private" {
   count = local.enabled ? 1 : 0
-  tags  = join("-",merge(var.tags, map("Name", var.name)),"Private_route")
+  tags  = merge(var.tags, map("Name", var.name),"-private-route")
 
   vpc_id = var.vpc_id
 }

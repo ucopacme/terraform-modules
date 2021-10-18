@@ -23,3 +23,7 @@ variable "vpc_id" {
   type        = string
   description = "VPC Id"
 }
+# variable "publich_subnet_id" {
+#   type        = string
+#   description = "subnet Id"
+# }

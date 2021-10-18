@@ -1,4 +1,4 @@
-variable "public_subnet_id" {
+variable "subnet_id" {
   type        = string
   description = "subnet Id"
 }

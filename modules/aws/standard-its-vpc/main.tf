@@ -76,7 +76,7 @@ module "vpc_route_table_main_route_table_association" {
 }
 
 # vpc route table publich route table association
-module "vpc_route_table_main_route_table_association" {
+module "vpc_route_table_publich_route_table_association" {
   # enabled        = var.enabled
   name           = join("-", [var.name, "vpc-route-table-publich-route-table-association"])
   source         = "../pulich_route_table_association"

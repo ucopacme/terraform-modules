@@ -10,10 +10,10 @@ resource "aws_main_route_table_association" "this" {
 
 
 resource "aws_route_table_association" "public" {
-  count = local.public_count
+  # count = local.public_count
 
-  subnet_id      = module.vpc_public_subnets.subnet_ids
-  route_table_id = module.vpc_route_table.id
+  subnet_id      = var.public_subnet_id
+  route_table_id = var.route_table_id
 
 
   depends_on = [

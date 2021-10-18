@@ -66,3 +66,9 @@ variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)
 }
+
+variable "allocation_id" {
+  type        = string
+  description = "Allocation ID"
+}
+

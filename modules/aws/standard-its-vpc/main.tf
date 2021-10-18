@@ -72,7 +72,7 @@ module "vpc_nat_gateway"{
   source         = "../nat_gateway"
   allocation_id = var.allocation_id
   # subnet_id     = module.vpc_public_subnets.id
-  subnet_id     = module.vpc_public_subnets.subnet_ids
+  subnet_id     = ["module.vpc_public_subnets.subnet_ids"]
   tags          = merge(var.tags, map("Name", var.name))
 
 }

@@ -71,7 +71,7 @@ module "vpc_nat_gateway"{
   name          = join("-", [var.name, "nat-gateway"])       
   source         = "../nat_gateway"
   allocation_id = var.allocation_id
-  subnet_id     = "${element(module.vpc_tgw_subnets, 0)}"
+  subnet_id     = module.vpc.public_subnets[0]
   # subnet_id     = module.vpc_public_subnets.id
   tags          = merge(var.tags, map("Name", var.name))
 

@@ -105,3 +105,13 @@ module "vpc_route_for_igw" {
   gateway_id             = module.vpc_igw.id
   route_table_id         = module.vpc_route_table.id
 }
+
+module "vpc_route_for_nat" {
+  enabled                = var.enabled
+  name                   = join("-", [var.name, "vpc-route-for-nat-gateway"])
+  source                 = "../route"
+  tags                   = merge(var.tags, map("Name", var.name))
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = "nat-055063a0e31c7c038"
+  route_table_id         = "rtb-0b895ed292c669dda"
+}

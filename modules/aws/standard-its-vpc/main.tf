@@ -80,7 +80,7 @@ module "vpc_nat_gateway"{
   name          = join("-", [var.name, "nat-gateway"])       
   source         = "../nat_gateway"
   allocation_id   = module.vpc_eip.allocation_id
-  subnet_id     = element(module.vpc_private_subnets.subnet_ids, 0)
+  subnet_id     = element(module.vpc_public_subnets.subnet_ids, 0)
   tags          = merge(var.tags, map("Name", var.name))
 
 }

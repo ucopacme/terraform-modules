@@ -67,8 +67,25 @@ variable "tags" {
   type        = map(string)
 }
 
-variable "allocation_id" {
+# variable "allocation_id" {
+#   type        = string
+#   description = "Allocation ID"
+# }
+
+variable "enabled_nat_gateway" {
   type        = string
-  description = "Allocation ID"
+  description = "Set to `false` to prevent the module from creating any resources"
+  default     = "true"
 }
 
+# variable "enabled_nat_route" {
+#   type        = string
+#   description = "Set to `false` to prevent the module from creating any resources"
+#   default     = "true"
+# }
+
+variable "enabled_igw_route" {
+  type        = string
+  description = "Set to `false` to prevent the module from creating any resources"
+  default     = "true"
+}

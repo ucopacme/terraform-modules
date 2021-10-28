@@ -20,6 +20,11 @@ variable "enabled" {
   description = "Set to `false` to prevent the module from creating any resources"
   default     = "true"
 }
+variable "enabled_data_subnets" {
+  type        = bool
+  description = "Set to `false` to prevent the module from creating data subnets"
+  default     = false
+}
 
 variable "environment" {
   description = "environment, eg dev, qa, prod "
@@ -51,12 +56,12 @@ variable "private_subnet_index" {
 
 variable "data_subnet_index" {
   description = "index of data subnet"
-  default     = 4
+  default     = 3
   type        = number
 }
 
 variable "subnet_tier_bits" {
-  default     = 3
+  default     = 2
   type        = number
   description = "number of bits to allocate to subnet tiers, 3 means 8 different tier blocks"
 }

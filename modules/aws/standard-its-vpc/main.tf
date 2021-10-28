@@ -46,7 +46,7 @@ module "vpc_private_subnets" {
 # vpc data subnets module
 module "vpc_data_subnets" {
   availability_zones = var.azs
-  enabled            = var.enabled
+  enabled            = var.enabled && var.enabled_data_subnets
   name               = join("-", [var.name, "vpc-data-subnet"])
   new_bits           = "2"
   source             = "../vpc_subnets"

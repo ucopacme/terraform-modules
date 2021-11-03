@@ -62,6 +62,6 @@ locals {
 
 
 terraform {
-  # source = "git::https://git@github.com/ucopacme/terraform-modules.git//modules/aws/standard-its-vpc//?ref=v0.0.9"
+   source = "git::https://git@github.com/ucopacme/terraform-modules.git//modules/aws/standard-its-vpc//?ref=v0.0.9"
   
 }

@@ -34,6 +34,7 @@ include {
 }
 
 inputs = {
+  application          = "fix this "
   azs                  = local.common_vars.network.vpcs.ucop-iam-uat.azs
   cidr_block           = local.common_vars.network.vpcs.ucop-iam-uat.cidr_blocks
   enabled              = "true"

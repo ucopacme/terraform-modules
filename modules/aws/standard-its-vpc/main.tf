@@ -103,6 +103,14 @@ module "vpc_route_table_public_route_table_association" {
   subnet_id      =element(module.vpc_public_subnets.subnet_ids, 0)
 
 }
+module "vpc_route_table_public_route_table_association1" {
+  enabled        = var.enabled
+  source         = "../public_route_table_association"
+  route_table_id = module.vpc_route_table.route_id
+  subnet_id      = element(module.vpc_public_subnets.subnet_ids, 1)
+  
+
+}
 
 # vpc internet gateway
 module "vpc_igw" {

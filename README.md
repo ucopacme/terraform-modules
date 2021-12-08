@@ -34,6 +34,7 @@ include {
 }
 
 inputs = {
+  application          = "fix this "
   azs                  = local.common_vars.network.vpcs.ucop-iam-uat.azs
   cidr_block           = local.common_vars.network.vpcs.ucop-iam-uat.cidr_blocks
   enabled              = "true"
@@ -62,6 +63,6 @@ locals {
 
 
 terraform {
-  # source = "git::https://git@github.com/ucopacme/terraform-modules.git//modules/aws/standard-its-vpc//?ref=v0.0.9"
+   source = "git::https://git@github.com/ucopacme/terraform-modules.git//modules/aws/standard-its-vpc//?ref=v0.0.9"
   
 }

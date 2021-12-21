@@ -10,6 +10,13 @@ variable "azs" {
   description = "Availability zones to occupy"
 }
 
+variable "pub_azs" {
+  #default     = ["us-west-2a", "us-west-2b", "us-west-2c", "us-west-2d"]
+  default     = ["us-west-2a", "us-west-2b"]
+  type        = list(string)
+  description = "Availability zones to occupy"
+}
+
 variable "cidr_block" {
   type        = string
   description = "CIDR for VPC"

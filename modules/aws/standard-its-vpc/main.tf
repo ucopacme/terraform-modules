@@ -9,7 +9,8 @@ module "vpc" {
 
 # vpc public subnets module
 module "vpc_public_subnets" {
-  availability_zones = var.azs
+  # availability_zones = var.azs
+  availability_zones = var.pub_azs
   enabled            = var.enabled
   name               = join("-", [var.name, "vpc-public-subnet"])
   new_bits           = "2"
@@ -104,7 +105,7 @@ module "vpc_route_table_public_route_table_association" {
 
 }
 module "vpc_route_table_public_route_table_association1" {
-  enabled        = var.enabled
+
   source         = "../public_route_table_association"
   route_table_id = module.vpc_route_table.route_id
   subnet_id      = element(module.vpc_public_subnets.subnet_ids, 1)

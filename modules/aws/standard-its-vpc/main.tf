@@ -105,10 +105,7 @@ module "vpc_route_table_public_route_table_association" {
 
 }
 module "vpc_route_table_public_route_table_association1" {
-<<<<<<< HEAD
 
-=======
->>>>>>> 385bd06c42542e09f7cdc346f7b12f516b0ab1de
   source         = "../public_route_table_association"
   route_table_id = module.vpc_route_table.route_id
   subnet_id      = element(module.vpc_public_subnets.subnet_ids, 1)

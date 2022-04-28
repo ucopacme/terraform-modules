@@ -22,26 +22,20 @@ The module will create:
 
 
 ## Usage
-Create terragrunt.hcl config file, copy/past the following configuration.
+1. Create main.tf config file, copy/past the following configuration.
 
 
-```hcl
-
-
-# Include all settings from root terragrunt.hcl file
-include {
-  path = find_in_parent_folders()
-}
-
-inputs = {
+```
+module "vpc" {
+  source               = "git::https://git@github.com/ucopacme/terraform-modules.git//modules/aws/standard-its-vpc//?ref=v0.0.12"
   application          = "fix this "
-  azs                  = local.common_vars.network.vpcs.ucop-iam-uat.azs
-  cidr_block           = local.common_vars.network.vpcs.ucop-iam-uat.cidr_blocks
+  azs                  = ["us-west-2a", "us-west-2b"]
+  cidr_block           = enter cidr block
   enabled              = "true"
-  enabled_data_subnets = "false" # change to true to create data_subnet
-  enabled_nat_gateway  = "false" # change to true to create nat-gatway
-  name = join("-", [local.application, local.environment
-  ])
+  environment          = local.environment
+  enabled_data_subnets = "true" # change to true to create data_subnet
+  enabled_nat_gateway  = "true" # change to true to create nat-gatway
+  name                 = join("-", [local.application, local.environment])
   tags = {
     "ucop:application" = local.application
     "ucop:createdBy"   = local.createdBy
@@ -51,18 +45,75 @@ inputs = {
   }
 }
 
-
 locals {
-  common_vars = jsondecode(file("../../../../common_vars.json"))
-  application = local.common_vars.applications.ucop-iam-uat.label
+  application = "xxx"
   createdBy   = "terraform"
-  environment = local.common_vars.environments.dev.label
-  group       = local.common_vars.groups.chs.label
-  source      = join("/", ["https://github.com/ucopacme/ucop-terraform-config/tree/master/terraform/its-chs-dev/us-west-2", path_relative_to_include()])
+  environment = "xxx"
+  group       = "xxx"
+  source      = join("/", ["https://github.com/ucopacme/ucop-terraform-deployments/terraform/xxx"])
 }
 
 
+##
+2. Create output.tf config file, copy/past the following configuration.
+
+output "vpc_id" {
+  description = "virtual private cloud id"
+  value       = module.vpc.vpc_id
+}
+
+output "public_subnet_ids" {
+  description = "list of public subnet ids"
+  value       = module.vpc.public_subnet_ids
+}
+
+output "private_subnet_ids" {
+  description = "list of private subnet ids"
+  value       = module.vpc.private_subnet_ids
+}
+output "tgw_subnet_ids" {
+  description = "list of tgw subnet ids"
+  value       = module.vpc.tgw_subnet_ids
+}
+
+
+
+output "data_subnet_ids" {
+  description = "list of data subnet ids"
+  value       = module.vpc.data_subnet_ids
+}
+
+output "route_table_id" {
+  description = "route table id"
+  value       = module.vpc.route_table_id
+}
+
+output "main_route_table_association_id" {
+  description = "route table id"
+  value       = module.vpc.main_route_table_association_id
+}
+
+output "igw_id" {
+  description = "internet gateway id"
+  value       = module.vpc.igw_id
+}
+
+output "igw_route_id" {
+  description = "internet gateway route id"
+  value       = module.vpc.igw_route_id
+}
+
+##
+3. Create backend.tf config file, copy/past the following configuration.
+
+
 terraform {
-   source = "git::https://git@github.com/ucopacme/terraform-modules.git//modules/aws/standard-its-vpc//?ref=v0.0.9"
-  
+  backend "remote" {
+    hostname     = "scalr.io" # enter our scalr url
+    organization = "env-id" # enter the organization id of the account you deploy.
+
+    workspaces {
+      name = "vpc-prod-vpc" # enter the worksapces name
+    }
+  }
 }

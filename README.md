@@ -103,17 +103,4 @@ output "igw_route_id" {
   value       = module.vpc.igw_route_id
 }
 
-##
-3. Create backend.tf config file, copy/past the following configuration.
 
-
-terraform {
-  backend "remote" {
-    hostname     = "scalr.io" # enter our scalr url
-    organization = "env-id" # enter the organization id of the account you deploy.
-
-    workspaces {
-      name = "vpc-prod-vpc" # enter the worksapces name
-    }
-  }
-}

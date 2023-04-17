@@ -42,3 +42,8 @@ output igw_route_id {
   description = "internet gateway route id"
   value       = module.vpc_route_for_igw.id
 }
+
+output vpc_cidr_block {
+  description = "virtual private cloud CIDR block"
+  value       = module.vpc.vpc_cidr_block
+}

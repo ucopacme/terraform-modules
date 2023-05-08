@@ -43,6 +43,16 @@ output igw_route_id {
   value       = module.vpc_route_for_igw.id
 }
 
+output nat_ids {
+  description = "List of NAT Gateway IDs"
+  value       = module.vpc_nat_gateway.nat_ids
+}
+
+output nat_route_id {
+  description = "nat gateway route id"
+  value       = module.vpc_route_for_nat.id
+}
+
 output vpc_cidr_block {
   description = "virtual private cloud CIDR block"
   value       = module.vpc.vpc_cidr_block

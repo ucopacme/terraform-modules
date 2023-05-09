@@ -148,9 +148,7 @@ module "vpc_route_for_nat" {
   source                 = "../route_nat"
   tags                   = merge(var.tags, tomap({"Name" = var.name}))
   destination_cidr_block = "0.0.0.0/0"
-  # nat_gateway_id         = element(module.vpc_nat_gateway.nat_ids, 0)
-  nat_gateway_id         = module.vpc_nat_gateway.nat_ids
-  # route_table_id         = "rtb-015119eceb4f97947"
+  nat_gateway_id         = module.vpc_nat_gateway.nat_id
   route_table_id         = module.vpc_route_table.id
 }
 

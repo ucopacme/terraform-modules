@@ -43,9 +43,9 @@ output igw_route_id {
   value       = module.vpc_route_for_igw.id
 }
 
-output nat_ids {
-  description = "List of NAT Gateway IDs"
-  value       = module.vpc_nat_gateway.nat_ids
+output nat_id {
+  description = "nat gateway id"
+  value       = module.vpc_nat_gateway.nat_id
 }
 
 output nat_route_id {

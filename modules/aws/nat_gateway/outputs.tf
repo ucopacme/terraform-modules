@@ -1,4 +1,4 @@
-output "nat_ids" {
-  description = "List of NAT Gateway IDs"
+output "nat_id" {
+  description = "nat gateway id"
   value       = join("", aws_nat_gateway.this.*.id)
 }

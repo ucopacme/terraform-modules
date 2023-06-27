@@ -11,7 +11,6 @@ resource "aws_route" "this" {
 
   egress_only_gateway_id    = var.egress_only_gateway_id
   gateway_id                = var.gateway_id
-  instance_id               = var.instance_id
   nat_gateway_id            = var.nat_gateway_id
   network_interface_id      = var.network_interface_id
   transit_gateway_id        = var.transit_gateway_id

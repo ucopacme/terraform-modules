@@ -43,12 +43,6 @@ variable "gateway_id" {
   type        = string
 }
 
-variable "instance_id" {
-  default     = null
-  description = "EC2 instance Id"
-  type        = string
-}
-
 variable "nat_gateway_id" {
   default     = null
   description = "VPC NAT gateway Id"

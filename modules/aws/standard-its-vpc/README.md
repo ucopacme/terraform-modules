@@ -41,11 +41,11 @@ No provider.
 
 The subnet\_tier\_bits and subnet\_index variables can be used to reserve more CIDR space for a specific subnet tier.  For example, to create smaller tgw subnets and larger private subnets:
 
-private\_subnet\_index = 0
+`private\_subnet\_index = 0
 public\_subnet\_index = 1
 data\_subnet\_index = 2
 tgw\_subnet\_index = 3
 private\_subnet\_tier\_bits = 1
 public\_subnet\_tier\_bits = 2
 data\_subnet\_tier\_bits = 2
-tgw\_subnet\_tier\_bits = 3
+tgw\_subnet\_tier\_bits = 3`

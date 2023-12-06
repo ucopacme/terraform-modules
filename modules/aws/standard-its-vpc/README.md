@@ -39,15 +39,15 @@ No provider.
 
 ## Note on subnet sizing
 
-The subnet\_tier\_bits and subnet\_index variables can be used to reserve more CIDR space for a specific subnet tier.  For example, to create smaller tgw subnets and larger private subnets:
+The subnet\_tier\_bits and subnet\_index variables can be used to reserve more CIDR space for a specific subnet tier.  For example, to create smaller data and tgw subnets and larger private subnets:
 
 ```
 private_subnet_index = 0
-public_subnet_index = 1
-data_subnet_index = 2
-tgw_subnet_index = 3
+public_subnet_index = 2
+data_subnet_index = 6
+tgw_subnet_index = 7
 private_subnet_tier_bits = 1
 public_subnet_tier_bits = 2
-data_subnet_tier_bits = 2
+data_subnet_tier_bits = 3
 tgw_subnet_tier_bits = 3
 ```

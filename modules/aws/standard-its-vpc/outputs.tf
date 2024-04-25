@@ -53,6 +53,11 @@ output nat_route_id {
   value       = module.vpc_route_for_nat.id
 }
 
+output nat_public_ip {
+  description = "nat gateway public ip"
+  value       = module.vpc_eip.public_ip
+}
+
 output vpc_cidr_block {
   description = "virtual private cloud CIDR block"
   value       = module.vpc.vpc_cidr_block

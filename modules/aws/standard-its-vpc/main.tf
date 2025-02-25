@@ -124,7 +124,7 @@ module "vpc_igw" {
 
 # vpc route for internet gateway
 module "vpc_route_for_igw" {
-  enabled                = var.enabled
+  enabled                = var.enabled && var.enabled_public_subnets
   name                   = join("-", [var.name, "vpc-route-for-igw"])
   source                 = "../route"
   tags                   = merge(var.tags, tomap({"Name" = var.name}))
@@ -136,18 +136,18 @@ module "vpc_route_for_igw" {
 
 module "vpc_route_for_nat" {
   # enabled                = var.enabled
-  enabled_nat_gateway      = var.enabled_nat_gateway
-  name                   = join("-", [var.name, "vpc-route-for-nat-gateway"])
-  source                 = "../route_nat"
-  tags                   = merge(var.tags, tomap({"Name" = var.name}))
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = module.vpc_nat_gateway.nat_id
-  route_table_id         = module.vpc_route_table.id
+  enabled_nat_gateway      = var.enabled_nat_gateway && var.enabled_public_subnets
+  name                     = join("-", [var.name, "vpc-route-for-nat-gateway"])
+  source                   = "../route_nat"
+  tags                     = merge(var.tags, tomap({"Name" = var.name}))
+  destination_cidr_block   = "0.0.0.0/0"
+  nat_gateway_id           = module.vpc_nat_gateway.nat_id
+  route_table_id           = module.vpc_route_table.id
 }
 
 module "vpc_route_for_igw_private" {
   # enabled                = var.enabled
-  enabled_igw_route      = var.enabled_igw_route
+  enabled_igw_route      = var.enabled_igw_route && var.enabled_public_subnets
   name                   = join("-", [var.name, "vpc-route-for-igw-route"])
   source                 = "../route_igw"
   tags                   = merge(var.tags, tomap({"Name" = var.name}))

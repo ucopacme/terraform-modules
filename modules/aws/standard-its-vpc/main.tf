@@ -77,7 +77,7 @@ module "vpc_nat_gateway"{
   name                = join("-", [var.name, "nat-gateway"])
   source              = "../nat_gateway"
   allocation_id       = module.vpc_eip.allocation_id
-  subnet_id           = element(module.vpc_public_subnets.subnet_ids, 0)
+  subnet_id           = var.enabled_public_subnets ? element(module.vpc_public_subnets.subnet_ids, 0) : null
   tags                = merge(var.tags, tomap({"Name" = var.name}))
 }
 
@@ -96,21 +96,21 @@ module "vpc_route_table_public_route_table_association" {
   enabled        = var.enabled && var.enabled_public_subnets
   source         = "../public_route_table_association"
   route_table_id = module.vpc_route_table.route_id
-  subnet_id      = element(module.vpc_public_subnets.subnet_ids, 0)
+  subnet_id      = var.enabled_public_subnets ? element(module.vpc_public_subnets.subnet_ids, 0) : null
 }
 
 module "vpc_route_table_public_route_table_association1" {
   enabled        = var.enabled && var.enabled_public_subnets
   source         = "../public_route_table_association"
   route_table_id = module.vpc_route_table.route_id
-  subnet_id      = element(module.vpc_public_subnets.subnet_ids, 1)
+  subnet_id      = var.enabled_public_subnets ? element(module.vpc_public_subnets.subnet_ids, 0) : null
 }
 
 module "vpc_route_table_public_route_table_association2" {
   enabled        = var.enabled && var.enabled_public_subnets
   source         = "../public_route_table_association"
   route_table_id = module.vpc_route_table.route_id
-  subnet_id      = element(module.vpc_public_subnets.subnet_ids, 2)
+  subnet_id      = var.enabled_public_subnets ? element(module.vpc_public_subnets.subnet_ids, 0) : null
 }
 
 # vpc internet gateway

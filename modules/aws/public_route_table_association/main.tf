@@ -1,12 +1,9 @@
-resource "aws_route_table_association" "public" {
-  # count = local.public_count
+locals {
+  enabled = var.enabled == "true"
+}
 
+resource "aws_route_table_association" "public" {
+  count          = local.enabled ? 1 : 0
   subnet_id      = var.subnet_id
   route_table_id = var.route_table_id
-
-
-  # depends_on = [
-  #   aws_subnet.public,
-  #   aws_route_table.public,
-  # ]
 }

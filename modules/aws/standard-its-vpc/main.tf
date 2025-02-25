@@ -11,7 +11,7 @@ module "vpc" {
 module "vpc_public_subnets" {
   # availability_zones = var.azs
   availability_zones = var.pub_azs
-  enabled            = var.enabled
+  enabled            = var.enabled && var.enabled_public_subnets
   name               = join("-", [var.name, "vpc-public-subnet"])
   new_bits           = "1"
   source             = "../vpc_subnets"
@@ -64,26 +64,21 @@ module "vpc_route_table" {
   tags    = merge(var.tags, tomap({"Name" = var.name}))
   vpc_id  = module.vpc.vpc_id
 }
-# AWS eip 
 
 module "vpc_eip"{
   enabled_nat_gateway      = var.enabled_nat_gateway
-  name          = join("-", [var.name, "nat-gateway-eip"])       
+  name          = join("-", [var.name, "nat-gateway-eip"])
   source         = "../eip"
   tags          = merge(var.tags, tomap({"Name" = var.name}))
-
 }
-
-# AWS nat gatewawy
 
 module "vpc_nat_gateway"{
   enabled_nat_gateway       = var.enabled_nat_gateway
-  name          = join("-", [var.name, "nat-gateway"])       
+  name          = join("-", [var.name, "nat-gateway"])
   source         = "../nat_gateway"
   allocation_id   = module.vpc_eip.allocation_id
   subnet_id     = element(module.vpc_public_subnets.subnet_ids, 0)
   tags          = merge(var.tags, tomap({"Name" = var.name}))
-
 }
 
 # vpc route table main route table association
@@ -97,26 +92,23 @@ module "vpc_route_table_main_route_table_association" {
   # subnet_id = module.vpc_public_subnets.id
 }
 
-
 module "vpc_route_table_public_route_table_association" {
   source         = "../public_route_table_association"
   route_table_id = module.vpc_route_table.route_id
   subnet_id      =element(module.vpc_public_subnets.subnet_ids, 0)
 
 }
+
 module "vpc_route_table_public_route_table_association1" {
   source         = "../public_route_table_association"
   route_table_id = module.vpc_route_table.route_id
   subnet_id      = element(module.vpc_public_subnets.subnet_ids, 1)
-  
 }
 
 module "vpc_route_table_public_route_table_association2" {
   source         = "../public_route_table_association"
   route_table_id = module.vpc_route_table.route_id
   subnet_id      = element(module.vpc_public_subnets.subnet_ids, 2)
-  
-
 }
 
 # vpc internet gateway
@@ -127,7 +119,6 @@ module "vpc_igw" {
   tags    = merge(var.tags, tomap({"Name" = var.name}))
   vpc_id  = module.vpc.vpc_id
 }
-
 
 # vpc route for internet gateway
 module "vpc_route_for_igw" {

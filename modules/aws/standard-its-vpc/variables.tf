@@ -27,10 +27,17 @@ variable "enabled" {
   description = "Set to `false` to prevent the module from creating any resources"
   default     = "true"
 }
+
 variable "enabled_data_subnets" {
   type        = bool
   description = "Set to `false` to prevent the module from creating data subnets"
   default     = false
+}
+
+variable "enabled_public_subnets" {
+  type        = bool
+  description = "Set to `false` to prevent the module from creating public subnets"
+  default     = true
 }
 
 variable "environment" {

@@ -1,4 +1,8 @@
 # vpc
+locals {
+  pub_azs = var.pub_azs != null ? var.pub_azs : var.azs
+}
+
 module "vpc" {
   cidr_block = var.cidr_block
   enabled    = var.enabled
@@ -10,10 +14,10 @@ module "vpc" {
 # vpc public subnets module
 module "vpc_public_subnets" {
   # availability_zones = var.azs
-  availability_zones = var.pub_azs
+  availability_zones = local.pub_azs
   enabled            = var.enabled && var.enabled_public_subnets
   name               = join("-", [var.name, "vpc-public-subnet"])
-  new_bits           = "1"
+  new_bits           = ceil(log(length(local.pub_azs), 2))
   source             = "../vpc_subnets"
   subnet_cidr        = cidrsubnet(var.cidr_block, var.public_subnet_tier_bits == null ? var.subnet_tier_bits : var.public_subnet_tier_bits, var.public_subnet_index)
   tags               = merge(var.tags, tomap({"Name" = var.name}))
@@ -25,7 +29,7 @@ module "vpc_tgw_subnets" {
   availability_zones = var.azs
   enabled            = var.enabled
   name               = join("-", [var.name, "vpc-tgw-subnet"])
-  new_bits           = "1"
+  new_bits           = ceil(log(length(var.azs), 2))
   source             = "../vpc_subnets"
   subnet_cidr        = cidrsubnet(var.cidr_block, var.tgw_subnet_tier_bits == null ? var.subnet_tier_bits : var.tgw_subnet_tier_bits, var.tgw_subnet_index)
   tags               = merge(var.tags, tomap({"Name" = var.name}))
@@ -37,7 +41,7 @@ module "vpc_private_subnets" {
   availability_zones = var.azs
   enabled            = var.enabled
   name               = join("-", [var.name, "vpc-private-subnet"])
-  new_bits           = "1"
+  new_bits           = ceil(log(length(var.azs), 2))
   source             = "../vpc_subnets"
   subnet_cidr        = cidrsubnet(var.cidr_block, var.private_subnet_tier_bits == null ? var.subnet_tier_bits : var.private_subnet_tier_bits, var.private_subnet_index)
   tags               = merge(var.tags, tomap({"Name" = var.name}))
@@ -49,7 +53,7 @@ module "vpc_data_subnets" {
   availability_zones = var.azs
   enabled            = var.enabled && var.enabled_data_subnets
   name               = join("-", [var.name, "vpc-data-subnet"])
-  new_bits           = "1"
+  new_bits           = ceil(log(length(var.azs), 2))
   source             = "../vpc_subnets"
   subnet_cidr        = cidrsubnet(var.cidr_block, var.data_subnet_tier_bits == null ? var.subnet_tier_bits : var.data_subnet_tier_bits, var.data_subnet_index)
   tags               = merge(var.tags, tomap({"Name" = var.name}))
@@ -93,24 +97,24 @@ module "vpc_route_table_main_route_table_association" {
 }
 
 module "vpc_route_table_public_route_table_association" {
-  enabled        = var.enabled && var.enabled_public_subnets
+  enabled        = tostring(var.enabled && var.enabled_public_subnets)
   source         = "../public_route_table_association"
   route_table_id = module.vpc_route_table.route_id
   subnet_id      = var.enabled_public_subnets ? element(module.vpc_public_subnets.subnet_ids, 0) : null
 }
 
 module "vpc_route_table_public_route_table_association1" {
-  enabled        = var.enabled && var.enabled_public_subnets
+  enabled        = tostring(var.enabled && var.enabled_public_subnets)
   source         = "../public_route_table_association"
   route_table_id = module.vpc_route_table.route_id
-  subnet_id      = var.enabled_public_subnets ? element(module.vpc_public_subnets.subnet_ids, 0) : null
+  subnet_id      = var.enabled_public_subnets ? element(module.vpc_public_subnets.subnet_ids, 1) : null
 }
 
 module "vpc_route_table_public_route_table_association2" {
-  enabled        = var.enabled && var.enabled_public_subnets
+  enabled        = tostring(var.enabled && var.enabled_public_subnets)
   source         = "../public_route_table_association"
   route_table_id = module.vpc_route_table.route_id
-  subnet_id      = var.enabled_public_subnets ? element(module.vpc_public_subnets.subnet_ids, 0) : null
+  subnet_id      = var.enabled_public_subnets ? element(module.vpc_public_subnets.subnet_ids, 2) : null
 }
 
 # vpc internet gateway

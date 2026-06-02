@@ -11,10 +11,9 @@ variable "azs" {
 }
 
 variable "pub_azs" {
-  #default     = ["us-west-2a", "us-west-2b", "us-west-2c", "us-west-2d"]
-  default     = ["us-west-2a", "us-west-2b"]
+  default     = null
   type        = list(string)
-  description = "Availability zones to occupy"
+  description = "Availability zones for public subnets. Defaults to var.azs if not specified."
 }
 
 variable "cidr_block" {
